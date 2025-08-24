@@ -1,6 +1,18 @@
 public class Demo06 {
     public static void main(String[] args) {
-        new Aviary().release(new Bird());
-        new Aviary().release(new Penguin()); // runtime error
+        Sparrow sparrow = new Sparrow();
+        Penguin penguin = new Penguin();
+
+        new Aviary().release(sparrow);
+//        new Aviary().release(new Penguin()); // runtime error
     }
 }
+
+/*
+*
+*          Bird
+*          /     \
+*    Sparrow     Penguin
+*      Iflyable
+*
+* */
