@@ -25,6 +25,7 @@ public class AppSettings implements Serializable {
                 }
             }
         }
+        return instance;
     }
 
     public void loadFromFile(Path file) {
