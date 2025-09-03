@@ -1,0 +1,20 @@
+class  EmployeeLDAPadalpter implements  Employee{
+    private EmployeeLDAP employeeLDAP;
+   public EmployeeLDAPadalpter(EmployeeLDAP employeeLDAP){
+        this.employeeLDAP = employeeLDAP;
+    }
+
+
+    public  String getId(){
+        return employeeLDAP.get("uid");
+    }
+    public String getFirstName(){
+        return employeeLDAP.get("givenName");
+    }
+    public  String getLastName(){
+        return employeeLDAP.get("sn");
+    }
+    public String getEmail(){
+        return employeeLDAP.get("mail");
+    }
+}
