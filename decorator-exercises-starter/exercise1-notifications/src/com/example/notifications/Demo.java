@@ -24,10 +24,37 @@ public class Demo {
         //      d) Email + WhatsApp + Slack
         //
         // Example (after you implement):
-        // Notifier smsAndEmail = new SmsDecorator(base, "+91-99999-11111");
-        // smsAndEmail.notify("Build green ✅");
-        //
-        // Notifier full = new SlackDecorator(new WhatsAppDecorator(base, "user_wa"), "deployments");
-        // full.notify("Deployment completed 🚀");
+         Notifier smsAndEmail = new SmsDecorator(base, "+91-99999-11111");
+         smsAndEmail.notify("Build green ✅");
+         Notifier EmailWhatsapp = new WhatsappDecorator(base , "user_wa");
+         EmailWhatsapp.notify("Email and whatsapp");
+
+         Notifier EmailSlack = new SlackDecorator(base  , "SlackChannel");
+
+         Notifier full = new SlackDecorator(new WhatsAppDecorator(base, "user_wa"), "deployments");
+
+         /*
+         * Here’s what happens step by step:
+
+SlackDecorator.notify is called.
+
+It calls super.notify(message) → goes to NotifierDecorator.notify, which calls the wrapped object’s notify.
+
+That wrapped object is a WhatsAppDecorator, so WhatsAppDecorator.notify is called.
+
+It calls super.notify(message) again → goes to NotifierDecorator.notify, which calls the wrapped object’s notify.
+
+That wrapped object is the base EmailNotifier, so EmailNotifier.notify is called.
+
+Prints the email.
+
+Then control bubbles back up:
+
+WhatsAppDecorator prints the WhatsApp message.
+
+SlackDecorator prints the Slack message.
+*
+         * */
+         full.notify("Deployment completed 🚀");
     }
 }
